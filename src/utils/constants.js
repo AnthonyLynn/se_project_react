@@ -12,6 +12,8 @@ import clear from "../images/Clear.svg";
 import clear from "../images/Clear.svg";
 import clear from "../images/Clear.svg";*/
 
+import tShirt from "../images/T-Shirt.svg";
+
 export const weatherImages = {
   clear: {
     day: clear,

@@ -1,0 +1,31 @@
+.main__text {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.24;
+
+  margin: 40px 0 34px;
+}
+
+.main__items {
+  list-style: none;
+  display: grid;
+  justify-content: flex-start;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%/3, max(162px, 100%/5)), 1fr)
+  );
+  grid-gap: 20px 20px;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (width < 768px) {
+  .main__text {
+    margin: 32px 0 20px;
+  }
+
+  .main__items {
+    grid-gap: 16px 15px;
+  }
+}
