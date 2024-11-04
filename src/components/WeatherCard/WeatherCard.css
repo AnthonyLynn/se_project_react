@@ -1,0 +1,26 @@
+.weather-card {
+  position: relative;
+  display: flex;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.weather-card__temprature {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: calc(1 + (1 / 9));
+  color: #ffffff;
+
+  position: absolute;
+
+  margin: 20px 16px;
+  padding: 0;
+}
+
+.weather-card__icon {
+  object-fit: cover;
+  object-position: right top;
+  width: 100%;
+}

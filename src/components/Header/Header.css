@@ -1,0 +1,74 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 28px;
+  box-sizing: border-box;
+  align-content: center;
+}
+
+.header__info {
+  display: flex;
+  column-gap: 24px;
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+}
+
+.header__date-location {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+
+  align-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header__clothes-btn {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+
+  background: none;
+  border: none;
+
+  align-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header__menu {
+  display: flex;
+  flex-direction: row-reverse;
+  row-gap: 24px;
+  column-gap: 20px;
+}
+
+.header__menu-btn {
+  display: none;
+}
+
+.header__user {
+  display: flex;
+  gap: 12px;
+}
+
+.header__name {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.24;
+
+  align-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+}

@@ -7,7 +7,13 @@ import ItemModal from "../ItemModal/ItemModal";
 import "./App.css";
 
 function App() {
-  return <></>;
+  return (
+    <div className="page">
+      <Header />
+      <Main temp={75} weather={"clear"} timeOfDay={"day"} />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

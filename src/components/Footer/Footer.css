@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  justify-self: end;
+}
+
+.footer__credentials {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+
+  margin: 0;
+  padding: 0;
+}
+
+.footer__date {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+
+  margin: 0;
+  padding: 0;
+}
