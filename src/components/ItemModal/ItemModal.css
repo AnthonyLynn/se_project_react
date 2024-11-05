@@ -1,0 +1,77 @@
+.item-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  height: 100vh;
+}
+
+.item-modal__content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+  width: 498px;
+  max-width: 100%;
+}
+
+.item-modal__close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  background-color: #ffffff;
+  mask-image: url("../../images/Exit.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  border: none;
+
+  padding: 0;
+
+  width: 20px;
+  height: 20px;
+}
+
+.item-modal__close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.item-modal__image {
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+}
+
+.item-modal__info {
+  padding: 20px 32px 32px;
+}
+
+.item-modal__title {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000000;
+
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.item-modal__caption {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000000;
+
+  margin: 0;
+  padding: 0;
+}

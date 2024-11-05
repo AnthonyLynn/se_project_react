@@ -20,3 +20,8 @@ export const weatherImages = {
     night: clearNight,
   },
 };
+
+const apiKey = "17022760e890d61021b86f916ff3bd86";
+const latitude = 38.9578752;
+const longitude = -77.4144;
+export const apiRequest = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`;
