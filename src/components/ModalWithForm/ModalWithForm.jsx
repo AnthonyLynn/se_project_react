@@ -1,23 +1,38 @@
+import Modal from "../Modal/Modal";
+
 import "./ModalWithForm.css";
 
-function ModalWithForm(props) {
+function ModalWithForm({
+  name,
+  onClose,
+  onOutsideClick,
+  activeModal,
+  title,
+  buttonText,
+  onSubmit,
+  children,
+}) {
   return (
-    <div className={`modal modal_type_${props.name}`}>
-      <div className="modal__content">
-        <h2 className="modal__title">{props.title}</h2>
-        <button
-          type="button"
-          className="modal__close-btn"
-          onClick={props.onClose}
-        />
-        <form name={props.name} className="modal__form" id={props.name}>
-          {props.children}
-        </form>
-        <button type="submit" className="modal__button" form={props.name}>
-          {props.buttonText}
-        </button>
-      </div>
-    </div>
+    <Modal
+      name={name}
+      type="form"
+      onClose={onClose}
+      onOutsideClick={onOutsideClick}
+      activeModal={activeModal}
+    >
+      <h2 className="modal-form__title">{title}</h2>
+      <form
+        name={name}
+        className="modal-form__form"
+        id={name}
+        onSubmit={onSubmit}
+      >
+        {children}
+      </form>
+      <button type="submit" className="modal-form__button" form={name}>
+        {buttonText}
+      </button>
+    </Modal>
   );
 }
 

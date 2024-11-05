@@ -1,21 +1,22 @@
+import Modal from "../Modal/Modal";
+
 import "./ItemModal.css";
 
-function ItemModal(props) {
+function ItemModal({ name, onClose, onOutsideClick, activeModal, item }) {
   return (
-    <div className="item-modal">
-      <article className="item-modal__content">
-        <button
-          type="button"
-          className="item-modal__close-btn"
-          onClick={props.onClose}
-        />
-        <img src={props.imageUrl} alt="Item" className="item-modal__image" />
-        <div className="item-modal__info">
-          <h2 className="item-modal__title">{props.title}</h2>
-          <p className="item-modal__caption">{`Weather: ${props.weather}`}</p>
-        </div>
-      </article>
-    </div>
+    <Modal
+      name={name}
+      type="item"
+      onClose={onClose}
+      onOutsideClick={onOutsideClick}
+      activeModal={activeModal}
+    >
+      <img src={item.link} alt="Item" className="item-modal__image" />
+      <div className="item-modal__info">
+        <h2 className="item-modal__title">{item.name}</h2>
+        <p className="item-modal__caption">{`Weather: ${item.weather}`}</p>
+      </div>
+    </Modal>
   );
 }
 

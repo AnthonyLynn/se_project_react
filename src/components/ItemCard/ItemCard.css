@@ -9,6 +9,8 @@
   aspect-ratio: 1;
 
   overflow: hidden;
+
+  cursor: pointer;
 }
 
 .item-card__label {
