@@ -135,7 +135,7 @@
   border: none;
   border-radius: 4px;
 
-  margin: 32px 0 0;
+  margin: 8px 0 0;
   padding: 8px 16px;
   box-sizing: border-box;
 
@@ -158,7 +158,12 @@
     align-self: flex-end;
   }
 
+  .modal-form__title {
+    margin: 0 0 37px;
+  }
+
   .modal-form__button {
     width: 100%;
+    margin: 6px 0 0;
   }
 }

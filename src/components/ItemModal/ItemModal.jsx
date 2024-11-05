@@ -2,15 +2,9 @@ import Modal from "../Modal/Modal";
 
 import "./ItemModal.css";
 
-function ItemModal({ name, onClose, onOutsideClick, activeModal, item }) {
+function ItemModal({ name, onClose, activeModal, item }) {
   return (
-    <Modal
-      name={name}
-      type="item"
-      onClose={onClose}
-      onOutsideClick={onOutsideClick}
-      activeModal={activeModal}
-    >
+    <Modal name={name} type="item" onClose={onClose} activeModal={activeModal}>
       <img src={item.link} alt="Item" className="item-modal__image" />
       <div className="item-modal__info">
         <h2 className="item-modal__title">{item.name}</h2>

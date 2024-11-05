@@ -24,32 +24,18 @@ function App() {
     condition: "default",
     temp: { F: 999, C: 999 },
   });
-  const [activeModal, setActiveModal] = useState("item-display");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
 
   function onOpen(name) {
     setActiveModal(name);
-    document.addEventListener("keydown", onEscape);
   }
 
   function onClose() {
     setActiveModal("");
-    document.removeEventListener("keydown", onEscape);
   }
-
-  const onOutsideClick = (evt) => {
-    if (evt.currentTarget === evt.target) {
-      onClose();
-    }
-  };
-
-  const onEscape = (evt) => {
-    if (evt.key === "Escape") {
-      onClose();
-    }
-  };
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -97,14 +83,12 @@ function App() {
       <ItemModal
         name="preview"
         onClose={onClose}
-        onOutsideClick={onOutsideClick}
         activeModal={activeModal}
         item={selectedCard}
       />
       <ModalWithForm
         name="garment-form"
         onClose={onClose}
-        onOutsideClick={onOutsideClick}
         activeModal={activeModal}
         title="New garment"
         buttonText="Add garment"

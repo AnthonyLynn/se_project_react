@@ -5,7 +5,7 @@ import "./Main.css";
 
 function Main({ weatherData, onCardClick, items }) {
   return (
-    <div className="main">
+    <main className="main">
       <WeatherCard weatherData={weatherData} />
       <p className="main__text">
         Today is {weatherData.temp.F}&deg;F / You may want to wear:
@@ -21,7 +21,7 @@ function Main({ weatherData, onCardClick, items }) {
             );
           })}
       </ul>
-    </div>
+    </main>
   );
 }
 

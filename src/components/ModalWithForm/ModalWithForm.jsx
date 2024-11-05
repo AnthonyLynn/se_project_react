@@ -5,7 +5,6 @@ import "./ModalWithForm.css";
 function ModalWithForm({
   name,
   onClose,
-  onOutsideClick,
   activeModal,
   title,
   buttonText,
@@ -13,25 +12,14 @@ function ModalWithForm({
   children,
 }) {
   return (
-    <Modal
-      name={name}
-      type="form"
-      onClose={onClose}
-      onOutsideClick={onOutsideClick}
-      activeModal={activeModal}
-    >
+    <Modal name={name} type="form" onClose={onClose} activeModal={activeModal}>
       <h2 className="modal-form__title">{title}</h2>
-      <form
-        name={name}
-        className="modal-form__form"
-        id={name}
-        onSubmit={onSubmit}
-      >
+      <form name={name} className="modal-form__form" onSubmit={onSubmit}>
         {children}
+        <button type="submit" className="modal-form__button">
+          {buttonText}
+        </button>
       </form>
-      <button type="submit" className="modal-form__button" form={name}>
-        {buttonText}
-      </button>
     </Modal>
   );
 }
