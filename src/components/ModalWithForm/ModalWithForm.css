@@ -149,3 +149,16 @@
 .modal-form__button:disabled {
   opacity: 0.3;
 }
+
+@media screen and (width < 768px) {
+  .modal__content_type_form {
+    width: 100%;
+    padding: 28px 28px 32px;
+    border-radius: 12px 12px 0 0;
+    align-self: flex-end;
+  }
+
+  .modal-form__button {
+    width: 100%;
+  }
+}

@@ -11,7 +11,7 @@ import {
   filterWeatherData,
 } from "../../utils/weatherApi.js";
 
-/* TODO: replace once able to find users location */
+/* TODO: replace once able to find users location and connected to server */
 import { coords, APIkey, defaultClothingItems } from "../../utils/constants.js";
 
 import "./App.css";
@@ -21,12 +21,13 @@ function App() {
     city: "",
     type: "",
     timeOfDay: "day",
-    condition: "clear",
+    condition: "default",
     temp: { F: 999, C: 999 },
   });
   const [activeModal, setActiveModal] = useState("item-display");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
 
   function onOpen(name) {
     setActiveModal(name);
@@ -63,6 +64,10 @@ function App() {
     setSelectedCard(item);
   }
 
+  function toggleMobileMenu() {
+    setMobileMenuOpened(!isMobileMenuOpened);
+  }
+
   useEffect(() => {
     const request = getRequest(coords, APIkey);
     getWeather(request)
@@ -77,8 +82,17 @@ function App() {
 
   return (
     <div className="page">
-      <Header onAddClothes={onAddClothes} weatherData={weatherData} />
-      <Main weatherData={weatherData} onCardClick={onCardClick} />
+      <Header
+        onAddClothes={onAddClothes}
+        weatherData={weatherData}
+        isMenuOpen={isMobileMenuOpened}
+        onMenuOpen={toggleMobileMenu}
+      />
+      <Main
+        weatherData={weatherData}
+        onCardClick={onCardClick}
+        items={clothingItems}
+      />
       <Footer />
       <ItemModal
         name="preview"

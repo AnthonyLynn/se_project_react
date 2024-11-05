@@ -1,5 +1,7 @@
 .modal__content_type_item {
-  width: 498px;
+  width: 100%;
+  max-width: 498px;
+  min-width: 343px;
 }
 
 .modal__close-btn_type_item {
@@ -42,4 +44,11 @@
 
   margin: 0;
   padding: 0;
+}
+
+@media screen and (width < 768px) {
+  .modal__type_item {
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
 }

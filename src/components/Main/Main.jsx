@@ -3,18 +3,15 @@ import ItemCard from "../ItemCard/ItemCard";
 
 import "./Main.css";
 
-/* TODO delete after finishing */
-import { defaultClothingItems } from "../../utils/constants.js";
-
-function Main({ weatherData, onCardClick }) {
+function Main({ weatherData, onCardClick, items }) {
   return (
-    <>
+    <div className="main">
       <WeatherCard weatherData={weatherData} />
       <p className="main__text">
         Today is {weatherData.temp.F}&deg;F / You may want to wear:
       </p>
       <ul className="main__items">
-        {defaultClothingItems
+        {items
           .filter((item) => {
             return item.weather === weatherData.type;
           })
@@ -24,7 +21,7 @@ function Main({ weatherData, onCardClick }) {
             );
           })}
       </ul>
-    </>
+    </div>
   );
 }
 

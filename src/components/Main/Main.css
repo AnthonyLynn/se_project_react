@@ -1,3 +1,7 @@
+.main {
+  margin: 0 0 85px;
+}
+
 .main__text {
   font-family: CabinetGrotesk, sans-serif;
   font-weight: 700;
@@ -13,7 +17,7 @@
   justify-content: flex-start;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(min(100%/3, max(162px, 100%/5)), 1fr)
+    minmax(0, min(100%/2 - 20px * 1 / 2, max(325px, 100%/4 - 20px * 3 / 4)))
   );
   grid-gap: 20px 20px;
   margin: 0;
@@ -21,11 +25,19 @@
 }
 
 @media screen and (width < 768px) {
+  .main {
+    margin: 0 0 20px;
+  }
+
   .main__text {
     margin: 32px 0 20px;
   }
 
   .main__items {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(0, min(100%/2 - 15px * 1 / 2, max(325px, 100%/4 - 16px * 3 / 4)))
+    );
     grid-gap: 16px 15px;
   }
 }
