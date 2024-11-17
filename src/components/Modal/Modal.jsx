@@ -4,6 +4,8 @@ import "./Modal.css";
 
 function Modal({ name, type, onClose, activeModal, children }) {
   useEffect(() => {
+    if (activeModal !== type) return;
+
     const onEscape = (evt) => {
       if (evt.key === "Escape") {
         onClose();
@@ -12,11 +14,7 @@ function Modal({ name, type, onClose, activeModal, children }) {
 
     document.addEventListener("keydown", onEscape);
     return () => document.removeEventListener("keydown", onEscape);
-
-    // I don't understand why to pass onClose here in the array.
-    // Doesn't useEffect fire the function only when onClose changes;
-    // why not just pass an empty array?
-  }, [onClose]);
+  }, [activeModal]);
 
   const onOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {

@@ -1,3 +1,5 @@
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+
 import headerLogo from "../../images/Logo.svg";
 import avatarLogo from "../../images/Avatar.svg";
 import "./Header.css";
@@ -41,6 +43,7 @@ function Header({ onAddClothes, weatherData, isMenuOpen, onMenuOpen }) {
         >
           + Add clothes
         </button>
+        <ToggleSwitch />
       </div>
     </header>
   );
