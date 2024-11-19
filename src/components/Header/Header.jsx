@@ -1,5 +1,7 @@
 import React from "react";
 
+import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 import headerLogo from "../../images/Logo.svg";

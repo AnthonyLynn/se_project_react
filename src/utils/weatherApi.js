@@ -16,7 +16,10 @@ export function getWeather(request) {
 export function filterWeatherData(data) {
   const result = {};
   result.city = data.name;
-  result.temp = { F: data.main.temp, C: data.main.temp };
+  result.temp = {
+    F: Math.round(data.main.temp),
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
+  };
   result.type = getWeatherHeat(result.temp.F);
   result.timeOfDay = getTimeOfDay(data.dt, data.sys);
   result.condition = data.weather[0].main.toLowerCase();

@@ -38,6 +38,7 @@
   font-size: 14px;
   line-height: 1.24;
   color: #00000080;
+  user-select: none;
 
   width: var(--height);
   height: var(--height);

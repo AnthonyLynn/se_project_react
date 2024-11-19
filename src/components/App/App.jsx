@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import {
   getRequest,
@@ -30,8 +30,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] =
-    React.useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   function onOpen(name) {
     setActiveModal(name);
@@ -40,10 +39,6 @@ function App() {
   function onClose() {
     setActiveModal("");
   }
-
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-  };
 
   function onAddClothes() {
     onOpen("garment-form");
@@ -56,6 +51,12 @@ function App() {
 
   function toggleMobileMenu() {
     setMobileMenuOpened(!isMobileMenuOpened);
+  }
+
+  function onAddItem(item) {
+    /* TODO: add _id to item */
+    item._id = clothingItems.length;
+    setClothingItems([item, ...clothingItems]);
   }
 
   useEffect(() => {
@@ -94,79 +95,11 @@ function App() {
         activeModal={activeModal}
         item={selectedCard}
       />
-      <ModalWithForm
-        name="garment-form"
-        onClose={onClose}
+      <AddItemModal
         activeModal={activeModal}
-        title="New garment"
-        buttonText="Add garment"
-        onSubmit={onSubmit}
-      >
-        <label htmlFor="name" className="modal-form__label">
-          Name
-          <input
-            type="text"
-            className="modal-form__input"
-            id="name"
-            placeholder="Name"
-            required
-          />
-        </label>
-        <label htmlFor="imageUrl" className="modal-form__label">
-          Image
-          <input
-            type="url"
-            className="modal-form__input"
-            id="imageUrl"
-            placeholder="Image URL"
-            required
-          />
-        </label>
-        <fieldset className="modal-form__radio-buttons">
-          <legend className="modal-form__legend">
-            Select the weather type:
-          </legend>
-          <label
-            htmlFor="hot"
-            className="modal-form__label modal-form__label_type_radio"
-          >
-            <input
-              type="radio"
-              className="modal-form__radio"
-              id="hot"
-              name="weather"
-              required
-            />
-            Hot
-          </label>
-          <label
-            htmlFor="warm"
-            className="modal-form__label modal-form__label_type_radio"
-          >
-            <input
-              type="radio"
-              className="modal-form__radio"
-              id="warm"
-              name="weather"
-              required
-            />
-            Warm
-          </label>
-          <label
-            htmlFor="cold"
-            className="modal-form__label modal-form__label_type_radio"
-          >
-            <input
-              type="radio"
-              className="modal-form__radio"
-              id="cold"
-              name="weather"
-              required
-            />
-            Cold
-          </label>
-        </fieldset>
-      </ModalWithForm>
+        onAddItem={onAddItem}
+        onClose={onClose}
+      />
     </div>
   );
 }
