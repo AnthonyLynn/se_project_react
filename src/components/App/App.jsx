@@ -11,6 +11,8 @@ import {
   filterWeatherData,
 } from "../../utils/weatherApi.js";
 
+import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+
 /* TODO: replace once able to find users location and connected to server */
 import { coords, APIkey, defaultClothingItems } from "../../utils/constants.js";
 
@@ -28,6 +30,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] =
+    React.useState("F");
 
   function onOpen(name) {
     setActiveModal(name);
@@ -68,17 +72,21 @@ function App() {
 
   return (
     <div className="page">
-      <Header
-        onAddClothes={onAddClothes}
-        weatherData={weatherData}
-        isMenuOpen={isMobileMenuOpened}
-        onMenuOpen={toggleMobileMenu}
-      />
-      <Main
-        weatherData={weatherData}
-        onCardClick={onCardClick}
-        items={clothingItems}
-      />
+      <TemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, setCurrentTemperatureUnit }}
+      >
+        <Header
+          onAddClothes={onAddClothes}
+          weatherData={weatherData}
+          isMenuOpen={isMobileMenuOpened}
+          onMenuOpen={toggleMobileMenu}
+        />
+        <Main
+          weatherData={weatherData}
+          onCardClick={onCardClick}
+          items={clothingItems}
+        />
+      </TemperatureUnitContext.Provider>
       <Footer />
       <ItemModal
         name="preview"

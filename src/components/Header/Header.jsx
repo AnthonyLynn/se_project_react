@@ -1,3 +1,5 @@
+import React from "react";
+
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 import headerLogo from "../../images/Logo.svg";

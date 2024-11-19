@@ -7,17 +7,12 @@
   box-shadow: inset 0 0 0 2px #7e7e7e;
   border-radius: var(--height);
 
-  box-sizing: border-box;
-
+  cursor: pointer;
   display: flex;
   position: relative;
 }
 
 .switch__checkbox {
-  appearance: none;
-}
-
-.switch__slider {
   position: absolute;
 
   background-color: #000000;
@@ -27,13 +22,13 @@
 
   border-radius: 50%;
 
-  cursor: pointer;
+  appearance: none;
 
   left: 0;
-  transition: left 1s linear;
+  transition: left 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.switch__slider_active {
+.switch__checkbox:checked {
   left: var(--height);
 }
 
