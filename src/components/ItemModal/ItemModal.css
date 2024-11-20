@@ -23,6 +23,11 @@
   padding: 20px 32px 32px;
 }
 
+.item-modal__span {
+  display: flex;
+  justify-content: space-between;
+}
+
 .item-modal__title {
   font-family: CabinetGrotesk, sans-serif;
   font-weight: 700;
@@ -43,6 +48,21 @@
 
   margin: 0;
   padding: 0;
+}
+
+.item-modal__button {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #ff4d00;
+
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
 }
 
 @media screen and (width < 768px) {

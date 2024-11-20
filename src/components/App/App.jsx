@@ -1,10 +1,14 @@
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import Main from "../Main/Main";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
+import DeleteModal from "../DeleteModal/DeleteModal";
+import Main from "../Main/Main";
+import Profile from "../Profile/Profile";
+
 import {
   getRequest,
   getWeather,
@@ -12,7 +16,6 @@ import {
 } from "../../utils/weatherApi.js";
 
 import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
-import { WeatherContext } from "../../contexts/WeatherContext.js";
 
 /* TODO: replace once able to find users location and connected to server */
 import { coords, APIkey, defaultClothingItems } from "../../utils/constants.js";
@@ -60,6 +63,14 @@ function App() {
     setClothingItems([item, ...clothingItems]);
   }
 
+  function openDeleteModal() {
+    setActiveModal("delete");
+  }
+
+  function onDeleteCard() {
+    /* TODO: make API call with selectedCard state */
+  }
+
   useEffect(() => {
     const request = getRequest(coords, APIkey);
     getWeather(request)
@@ -77,27 +88,59 @@ function App() {
       <TemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, setCurrentTemperatureUnit }}
       >
-        {/* Because we use weather data in multiple, and sometimes deep, child components, I use context */}
-        <WeatherContext.Provider value={{ weatherData }}>
-          <Header
-            onAddClothes={onAddClothes}
-            isMenuOpen={isMobileMenuOpened}
-            onMenuOpen={toggleMobileMenu}
+        <Header
+          onAddClothes={onAddClothes}
+          isMenuOpen={isMobileMenuOpened}
+          onMenuOpen={toggleMobileMenu}
+          weatherData={weatherData}
+        />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                onCardClick={onCardClick}
+                items={clothingItems}
+                weatherData={weatherData}
+              />
+            }
           />
-          <Main onCardClick={onCardClick} items={clothingItems} />
-        </WeatherContext.Provider>
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                onAddClothes={onAddClothes}
+                onCardClick={onCardClick}
+                items={clothingItems}
+                weatherData={weatherData}
+              />
+            }
+          />
+        </Routes>
       </TemperatureUnitContext.Provider>
+
       <Footer />
+
       <ItemModal
         name="preview"
         onClose={onClose}
         activeModal={activeModal}
         item={selectedCard}
+        openDeleteModal={openDeleteModal}
       />
       <AddItemModal
+        name="garment-form"
         activeModal={activeModal}
         onAddItem={onAddItem}
         onClose={onClose}
+      />
+      <DeleteModal
+        name="delete"
+        activeModal={activeModal}
+        onAddItem={onAddItem}
+        onClose={onClose}
+        onDelete={onDeleteCard}
       />
     </div>
   );

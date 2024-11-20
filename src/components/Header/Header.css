@@ -3,12 +3,15 @@
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  align-content: center;
 }
 
 .header__info {
   display: flex;
   column-gap: 24px;
+}
+
+.header__logo-link {
+  height: 0;
 }
 
 .header__logo {
@@ -96,6 +99,7 @@
   display: flex;
   width: max-content;
   gap: 12px;
+  text-decoration: none;
 }
 
 .header__user_type_menu-closed {
@@ -111,6 +115,8 @@
   align-content: center;
   margin: 0;
   padding: 0;
+
+  color: #000000;
 }
 
 .header__avatar {

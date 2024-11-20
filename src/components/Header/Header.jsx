@@ -1,15 +1,11 @@
-import { useContext } from "react";
-import { WeatherContext } from "../../contexts/WeatherContext.js";
-
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 import headerLogo from "../../images/Logo.svg";
 import avatarLogo from "../../images/Avatar.svg";
 import "./Header.css";
+import { Link, Outlet } from "react-router-dom";
 
-function Header({ onAddClothes, isMenuOpen, onMenuOpen }) {
-  const { weatherData } = useContext(WeatherContext);
-
+function Header({ onAddClothes, isMenuOpen, onMenuOpen, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -18,7 +14,9 @@ function Header({ onAddClothes, isMenuOpen, onMenuOpen }) {
   return (
     <header className="header">
       <div className="header__info">
-        <img src={headerLogo} alt="Logo" className="header__logo" />
+        <Link to="/" className="header__logo-link">
+          <img src={headerLogo} alt="Logo" className="header__logo" />
+        </Link>
         <p className="header__date-location">{`${currentDate}, ${weatherData.city}`}</p>
       </div>
       <div
@@ -31,14 +29,15 @@ function Header({ onAddClothes, isMenuOpen, onMenuOpen }) {
           }`}
           onClick={onMenuOpen}
         />
-        <div
+        <Link
+          to="/profile"
           className={`header__user ${
             !isMenuOpen ? "header__user_type_menu-closed" : ""
           }`}
         >
           <p className="header__name">Terrence Tegegne</p>
           <img src={avatarLogo} alt="Avatar" className="header__avatar" />
-        </div>
+        </Link>
         <button
           type="button"
           className={`header__clothes-btn ${
@@ -50,6 +49,7 @@ function Header({ onAddClothes, isMenuOpen, onMenuOpen }) {
         </button>
         <ToggleSwitch />
       </div>
+      <Outlet />
     </header>
   );
 }

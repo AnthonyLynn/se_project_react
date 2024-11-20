@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ activeModal, onAddItem, onClose }) {
+function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
   /* 
     Is there a better way to do this so that the the same pattern isn't repeaated 3 times over?
     Tried doing something like this but it didn't work:
@@ -42,7 +42,7 @@ function AddItemModal({ activeModal, onAddItem, onClose }) {
   }
 
   useEffect(() => {
-    if (activeModal !== "garment-form") return;
+    if (activeModal !== modalName) return;
 
     resetInputs();
   }, [activeModal]);
@@ -54,7 +54,7 @@ function AddItemModal({ activeModal, onAddItem, onClose }) {
 
   return (
     <ModalWithForm
-      name="garment-form"
+      name={modalName}
       onClose={onClose}
       activeModal={activeModal}
       title="New garment"

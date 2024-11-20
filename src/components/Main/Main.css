@@ -1,5 +1,14 @@
 .main {
-  margin: 28px 0 auto;
+  margin: 28px 0 85px;
+}
+
+.main__text {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.24;
+
+  margin: 40px 0 34px;
 }
 
 @media screen and (width < 768px) {
