@@ -12,6 +12,7 @@ import {
 } from "../../utils/weatherApi.js";
 
 import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+import { WeatherContext } from "../../contexts/WeatherContext.js";
 
 /* TODO: replace once able to find users location and connected to server */
 import { coords, APIkey, defaultClothingItems } from "../../utils/constants.js";
@@ -76,17 +77,15 @@ function App() {
       <TemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, setCurrentTemperatureUnit }}
       >
-        <Header
-          onAddClothes={onAddClothes}
-          weatherData={weatherData}
-          isMenuOpen={isMobileMenuOpened}
-          onMenuOpen={toggleMobileMenu}
-        />
-        <Main
-          weatherData={weatherData}
-          onCardClick={onCardClick}
-          items={clothingItems}
-        />
+        {/* Because we use weather data in multiple, and sometimes deep, child components, I use context */}
+        <WeatherContext.Provider value={{ weatherData }}>
+          <Header
+            onAddClothes={onAddClothes}
+            isMenuOpen={isMobileMenuOpened}
+            onMenuOpen={toggleMobileMenu}
+          />
+          <Main onCardClick={onCardClick} items={clothingItems} />
+        </WeatherContext.Provider>
       </TemperatureUnitContext.Provider>
       <Footer />
       <ItemModal

@@ -1,12 +1,14 @@
-import React from "react";
+import { useContext } from "react";
 import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+import { WeatherContext } from "../../contexts/WeatherContext.js";
 
 import { weatherImages } from "../../utils/constants.js";
 
 import "./WeatherCard.css";
 
-function WeatherCard({ weatherData }) {
-  const { currentTemperatureUnit } = React.useContext(TemperatureUnitContext);
+function WeatherCard() {
+  const { weatherData } = useContext(WeatherContext);
+  const { currentTemperatureUnit } = useContext(TemperatureUnitContext);
 
   let icon;
   if (weatherImages[weatherData.condition]) {

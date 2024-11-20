@@ -1,6 +1,5 @@
-import React from "react";
-
-import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+import { useContext } from "react";
+import { WeatherContext } from "../../contexts/WeatherContext.js";
 
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
@@ -8,7 +7,9 @@ import headerLogo from "../../images/Logo.svg";
 import avatarLogo from "../../images/Avatar.svg";
 import "./Header.css";
 
-function Header({ onAddClothes, weatherData, isMenuOpen, onMenuOpen }) {
+function Header({ onAddClothes, isMenuOpen, onMenuOpen }) {
+  const { weatherData } = useContext(WeatherContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",

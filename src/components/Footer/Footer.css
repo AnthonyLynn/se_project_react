@@ -1,8 +1,9 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  margin-top: auto;
-  justify-self: end;
+  justify-self: flex-end;
+
+  margin: 80px 0 0;
 }
 
 .footer__credentials {
