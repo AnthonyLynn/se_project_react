@@ -2,12 +2,12 @@ import ItemCard from "../ItemCard/ItemCard";
 
 import "./ClothesSection.css";
 
-function ClothesSection({ onCardClick, items, weatherData }) {
+function ClothesSection({ onCardClick, items, weatherData, shouldFilter }) {
   return (
     <ul className="clothes-section">
       {items
         .filter((item) => {
-          return item.weather === weatherData.type;
+          return shouldFilter ? item.weather === weatherData.type : true;
         })
         .map((item) => {
           return (

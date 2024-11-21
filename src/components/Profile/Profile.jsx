@@ -17,6 +17,7 @@ function Profile({ onAddClothes, onCardClick, items, weatherData }) {
           onCardClick={onCardClick}
           items={items}
           weatherData={weatherData}
+          shouldFilter={false}
         />
       </section>
     </div>

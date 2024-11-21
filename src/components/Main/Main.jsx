@@ -20,6 +20,7 @@ function Main({ onCardClick, items, weatherData }) {
         onCardClick={onCardClick}
         items={items}
         weatherData={weatherData}
+        shouldFilter={true}
       />
     </main>
   );
