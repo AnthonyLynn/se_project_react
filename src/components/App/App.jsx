@@ -61,8 +61,7 @@ function App() {
   function onAddItem(item) {
     postItem(item)
       .then((data) => {
-        console.log(data);
-        setClothingItems([...clothingItems, data]);
+        setClothingItems([data, ...clothingItems]);
       })
       .catch(console.error);
   }
