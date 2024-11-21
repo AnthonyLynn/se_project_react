@@ -9,7 +9,7 @@ function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
 
     const inputFields = {
       name: "",
-      link: "",
+      imageUrl: "",
       weather: "",
     };
 
@@ -28,16 +28,16 @@ function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
   */
 
   const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
 
   const onNameChange = (evt) => setName(evt.target.value);
-  const onLinkChange = (evt) => setLink(evt.target.value);
+  const onImageUrlChange = (evt) => setImageUrl(evt.target.value);
   const onWeatherChange = (evt) => setWeather(evt.target.value);
 
   function resetInputs() {
     setName("");
-    setLink("");
+    setImageUrl("");
     setWeather("");
   }
 
@@ -49,7 +49,8 @@ function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem({ name: name, link: link, weather: weather });
+    onAddItem({ name: name, imageUrl: imageUrl, weather: weather });
+    onClose();
   };
 
   return (
@@ -80,10 +81,10 @@ function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
           type="url"
           className="modal-form__input"
           id="imageUrl"
-          name="link"
+          name="imageUrl"
           placeholder="Image URL"
-          onChange={onLinkChange}
-          value={link}
+          onChange={onImageUrlChange}
+          value={imageUrl}
           required
         />
       </label>

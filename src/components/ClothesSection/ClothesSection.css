@@ -5,7 +5,7 @@
   justify-content: flex-start;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(0, min(100%/2 - 20px * 1 / 2, max(325px, 100%/4 - 20px * 3 / 4)))
+    minmax(0, min(100%/2 - 20px * 1 / 2, max(320px, 100%/4 - 20px * 3 / 4)))
   );
   grid-gap: 20px 20px;
   margin: 0;
@@ -16,7 +16,7 @@
   .clothes-section {
     grid-template-columns: repeat(
       auto-fit,
-      minmax(0, min(100%/2 - 15px * 1 / 2, max(325px, 100%/4 - 16px * 3 / 4)))
+      minmax(0, min(100%/2 - 15px * 1 / 2, max(320px, 100%/4 - 16px * 3 / 4)))
     );
     grid-gap: 16px 15px;
     margin: 0;

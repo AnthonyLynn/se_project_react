@@ -5,7 +5,7 @@ import "./ItemModal.css";
 function ItemModal({ name, onClose, activeModal, item, openDeleteModal }) {
   return (
     <Modal name={name} type="item" onClose={onClose} activeModal={activeModal}>
-      <img src={item.link} alt="Item" className="item-modal__image" />
+      <img src={item.imageUrl} alt="Item" className="item-modal__image" />
       <div className="item-modal__info">
         <span className="item-modal__span">
           <h2 className="item-modal__title">{item.name}</h2>

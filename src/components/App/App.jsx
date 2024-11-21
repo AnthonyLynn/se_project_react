@@ -14,11 +14,12 @@ import {
   getWeather,
   filterWeatherData,
 } from "../../utils/weatherApi.js";
+import { getItems, postItem, deleteItem } from "../../utils/api.js";
 
 import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 /* TODO: replace once able to find users location and connected to server */
-import { coords, APIkey, defaultClothingItems } from "../../utils/constants.js";
+import { coords, APIkey } from "../../utils/constants.js";
 
 import "./App.css";
 
@@ -32,20 +33,20 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
-  function onOpen(name) {
+  function openModal(name) {
     setActiveModal(name);
   }
 
-  function onClose() {
+  function closeModal() {
     setActiveModal("");
   }
 
   function onAddClothes() {
-    onOpen("garment-form");
+    openModal("garment-form");
   }
 
   function onCardClick(item) {
@@ -58,9 +59,12 @@ function App() {
   }
 
   function onAddItem(item) {
-    /* TODO: add _id to item */
-    item._id = clothingItems.length;
-    setClothingItems([item, ...clothingItems]);
+    postItem(item)
+      .then((data) => {
+        console.log(data);
+        setClothingItems([...clothingItems, data]);
+      })
+      .catch(console.error);
   }
 
   function openDeleteModal() {
@@ -68,7 +72,13 @@ function App() {
   }
 
   function onDeleteCard() {
-    /* TODO: make API call with selectedCard state */
+    deleteItem(selectedCard._id);
+    setClothingItems(
+      clothingItems.filter((clothingItem) => {
+        return clothingItem !== selectedCard;
+      })
+    );
+    closeModal();
   }
 
   useEffect(() => {
@@ -80,7 +90,11 @@ function App() {
       })
       .catch(console.error);
 
-    setClothingItems(defaultClothingItems);
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -124,7 +138,7 @@ function App() {
 
       <ItemModal
         name="preview"
-        onClose={onClose}
+        onClose={closeModal}
         activeModal={activeModal}
         item={selectedCard}
         openDeleteModal={openDeleteModal}
@@ -133,13 +147,13 @@ function App() {
         name="garment-form"
         activeModal={activeModal}
         onAddItem={onAddItem}
-        onClose={onClose}
+        onClose={closeModal}
       />
       <DeleteModal
         name="delete"
         activeModal={activeModal}
         onAddItem={onAddItem}
-        onClose={onClose}
+        onClose={closeModal}
         onDelete={onDeleteCard}
       />
     </div>
