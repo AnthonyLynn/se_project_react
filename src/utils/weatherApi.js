@@ -1,12 +1,7 @@
+import { getResult } from "./api.js";
+
 export function getRequest({ latitude, longitude }, APIkey) {
   return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
-}
-
-function getResult(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
 }
 
 export function getWeather(request) {

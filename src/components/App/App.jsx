@@ -36,17 +36,22 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isLoading, setIsLoading] = useState(false);
 
   function openModal(name) {
     setActiveModal(name);
   }
 
-  function closeModal() {
-    setActiveModal("");
+  function openDeleteModal() {
+    openModal("delete");
   }
 
   function onAddClothes() {
     openModal("garment-form");
+  }
+
+  function closeModal() {
+    setActiveModal("");
   }
 
   function onCardClick(item) {
@@ -59,41 +64,68 @@ function App() {
   }
 
   function onAddItem(item) {
+    setIsLoading(true);
     postItem(item)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
+        closeModal();
       })
-      .catch(console.error);
-  }
-
-  function openDeleteModal() {
-    setActiveModal("delete");
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
   function onDeleteCard() {
-    deleteItem(selectedCard._id);
-    setClothingItems(
-      clothingItems.filter((clothingItem) => {
-        return clothingItem !== selectedCard;
+    setIsLoading(true);
+    deleteItem(selectedCard._id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((clothingItem) => {
+            return clothingItem !== selectedCard;
+          })
+        );
+        closeModal();
       })
-    );
-    closeModal();
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
+  // Close modals on Esc key
   useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (evt) => {
+      if (evt.key == "Escape") closeModal();
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
+  // Get weather
+  useEffect(() => {
+    setIsLoading(true);
     const request = getRequest(coords, APIkey);
     getWeather(request)
       .then((data) => {
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }, []);
 
+  // Get Items
+  useEffect(() => {
+    setIsLoading(true);
     getItems()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -147,6 +179,7 @@ function App() {
         activeModal={activeModal}
         onAddItem={onAddItem}
         onClose={closeModal}
+        isLoading={isLoading}
       />
       <DeleteModal
         name="delete"
@@ -154,6 +187,7 @@ function App() {
         onAddItem={onAddItem}
         onClose={closeModal}
         onDelete={onDeleteCard}
+        isLoading={isLoading}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import Modal from "../Modal/Modal";
 
 import "./DeleteModal.css";
 
-function DeleteModal({ name, onClose, activeModal, onDelete }) {
+function DeleteModal({ name, onClose, activeModal, onDelete, isLoading }) {
   return (
     <Modal
       name={name}
@@ -18,7 +18,7 @@ function DeleteModal({ name, onClose, activeModal, onDelete }) {
         className="delete-modal__button delete-modal__button_type_delete"
         onClick={onDelete}
       >
-        Yes, delete item
+        {isLoading ? "deleting..." : "Yes, delete item"}
       </button>
       <button className="delete-modal__button" onClick={onClose}>
         Cancel

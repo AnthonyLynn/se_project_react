@@ -1,6 +1,6 @@
 import { baseUrl, header } from "./constants.js";
 
-function getResult(res) {
+export function getResult(res) {
   if (res.ok) {
     return res.json();
   }
@@ -27,5 +27,5 @@ export function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: header,
-  });
+  }).then(getResult);
 }

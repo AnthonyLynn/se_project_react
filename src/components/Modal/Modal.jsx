@@ -3,19 +3,6 @@ import { useEffect } from "react";
 import "./Modal.css";
 
 function Modal({ name, type, onClose, activeModal, children }) {
-  useEffect(() => {
-    if (activeModal !== type) return;
-
-    const onEscape = (evt) => {
-      if (evt.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", onEscape);
-    return () => document.removeEventListener("keydown", onEscape);
-  }, [activeModal]);
-
   const onOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
       onClose();

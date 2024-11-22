@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
+function AddItemModal({
+  name: modalName,
+  activeModal,
+  onAddItem,
+  onClose,
+  isLoading,
+}) {
   /* 
     Is there a better way to do this so that the the same pattern isn't repeaated 3 times over?
     Tried doing something like this but it didn't work:
@@ -50,7 +56,6 @@ function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
   const onSubmit = (evt) => {
     evt.preventDefault();
     onAddItem({ name: name, imageUrl: imageUrl, weather: weather });
-    onClose();
   };
 
   return (
@@ -59,7 +64,7 @@ function AddItemModal({ name: modalName, activeModal, onAddItem, onClose }) {
       onClose={onClose}
       activeModal={activeModal}
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Adding item..." : "Add garment"}
       onSubmit={onSubmit}
     >
       <label htmlFor="name" className="modal-form__label">
