@@ -1,66 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm.js";
 
-function AddItemModal({
-  name: modalName,
-  activeModal,
-  onAddItem,
-  onClose,
-  isLoading,
-}) {
-  /* 
-    Is there a better way to do this so that the the same pattern isn't repeaated 3 times over?
-    Tried doing something like this but it didn't work:
-
-    const inputFields = {
-      name: "",
-      imageUrl: "",
-      weather: "",
-    };
-
-    const [inputs, setInputs] = useState(inputFields);
-
-    useEffect(() => {
-      if (activeModal !== "garment-form") return;
-
-      setInputs(inputFields);
-    }, [activeModal]);
-
-    const onChange = (evt) => {
-      setInputs({ ...inputs, [evt.target.name]: evt.target.value });
-      console.log(inputs);
-    };
-  */
-
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
-
-  const onNameChange = (evt) => setName(evt.target.value);
-  const onImageUrlChange = (evt) => setImageUrl(evt.target.value);
-  const onWeatherChange = (evt) => setWeather(evt.target.value);
-
-  function resetInputs() {
-    setName("");
-    setImageUrl("");
-    setWeather("");
-  }
-
-  useEffect(() => {
-    if (activeModal !== modalName) return;
-
-    resetInputs();
-  }, [activeModal]);
+function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
+  const { values, handleChange, setValues } = useForm({});
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem({ name: name, imageUrl: imageUrl, weather: weather });
+    onAddItem(values);
   };
+
+  // Reset values on opening
+  useEffect(() => {
+    if (activeModal === name) setValues({});
+  }, [activeModal]);
 
   return (
     <ModalWithForm
-      name={modalName}
+      name={name}
       onClose={onClose}
       activeModal={activeModal}
       title="New garment"
@@ -75,8 +33,7 @@ function AddItemModal({
           id="name"
           name="name"
           placeholder="Name"
-          onChange={onNameChange}
-          value={name}
+          onChange={handleChange}
           required
         />
       </label>
@@ -88,8 +45,7 @@ function AddItemModal({
           id="imageUrl"
           name="imageUrl"
           placeholder="Image URL"
-          onChange={onImageUrlChange}
-          value={imageUrl}
+          onChange={handleChange}
           required
         />
       </label>
@@ -105,8 +61,8 @@ function AddItemModal({
             id="hot"
             name="weather"
             value="hot"
-            onChange={onWeatherChange}
-            checked={weather === "hot"}
+            onChange={handleChange}
+            checked={values.weather === "hot"}
             required
           />
           Hot
@@ -121,8 +77,8 @@ function AddItemModal({
             id="warm"
             name="weather"
             value="warm"
-            onChange={onWeatherChange}
-            checked={weather === "warm"}
+            onChange={handleChange}
+            checked={values.weather === "warm"}
             required
           />
           Warm
@@ -137,8 +93,8 @@ function AddItemModal({
             id="cold"
             name="weather"
             value="cold"
-            onChange={onWeatherChange}
-            checked={weather === "cold"}
+            onChange={handleChange}
+            checked={values.weather === "cold"}
             required
           />
           Cold
