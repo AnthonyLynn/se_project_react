@@ -34,6 +34,7 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
           name="name"
           placeholder="Name"
           onChange={handleChange}
+          value={values.name ? values.name : ""}
           required
         />
       </label>
@@ -46,6 +47,7 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
           name="imageUrl"
           placeholder="Image URL"
           onChange={handleChange}
+          value={values.imageUrl ? values.imageUrl : ""}
           required
         />
       </label>

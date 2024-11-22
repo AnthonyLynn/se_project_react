@@ -63,30 +63,36 @@ function App() {
     setMobileMenuOpened(!isMobileMenuOpened);
   }
 
-  function onAddItem(item) {
+  function handleSubmit(request) {
     setIsLoading(true);
-    postItem(item)
-      .then((data) => {
-        setClothingItems([data, ...clothingItems]);
-        closeModal();
-      })
+    request()
+      .then(closeModal)
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }
 
-  function onDeleteCard() {
-    setIsLoading(true);
-    deleteItem(selectedCard._id)
-      .then(() => {
+  function onAddItem(item) {
+    const makeRequest = () => {
+      return postItem(item).then((data) => {
+        setClothingItems([data, ...clothingItems]);
+      });
+    };
+
+    handleSubmit(makeRequest);
+  }
+
+  function onDeleteItem(item) {
+    const deleteRequest = () => {
+      return deleteItem(selectedCard._id).then(() => {
         setClothingItems(
           clothingItems.filter((clothingItem) => {
             return clothingItem !== selectedCard;
           })
         );
-        closeModal();
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+      });
+    };
+
+    handleSubmit(deleteRequest);
   }
 
   // Close modals on Esc key
@@ -106,26 +112,22 @@ function App() {
 
   // Get weather
   useEffect(() => {
-    setIsLoading(true);
     const request = getRequest(coords, APIkey);
     getWeather(request)
       .then((data) => {
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
       })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+      .catch(console.error);
   }, []);
 
   // Get Items
   useEffect(() => {
-    setIsLoading(true);
     getItems()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+      .catch(console.error);
   }, []);
 
   return (
@@ -186,7 +188,7 @@ function App() {
         activeModal={activeModal}
         onAddItem={onAddItem}
         onClose={closeModal}
-        onDelete={onDeleteCard}
+        onDelete={onDeleteItem}
         isLoading={isLoading}
       />
     </div>
