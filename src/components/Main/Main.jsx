@@ -6,7 +6,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 
 import "./Main.css";
 
-function Main({ onCardClick, items, weatherData }) {
+function Main({ onCardClick, items, weatherData, onCardLike }) {
   const { currentTemperatureUnit } = useContext(TemperatureUnitContext);
 
   return (
@@ -21,6 +21,7 @@ function Main({ onCardClick, items, weatherData }) {
         items={items}
         weatherData={weatherData}
         shouldFilter={true}
+        onCardLike={onCardLike}
       />
     </main>
   );

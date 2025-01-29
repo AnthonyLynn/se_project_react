@@ -1,11 +1,23 @@
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 import headerLogo from "../../images/Logo.svg";
-import avatarLogo from "../../images/Avatar.svg";
 import "./Header.css";
 import { Link, Outlet } from "react-router-dom";
 
-function Header({ onAddClothes, isMenuOpen, onMenuOpen, weatherData }) {
+function Header({
+  onAddClothes,
+  isMenuOpen,
+  onMenuOpen,
+  weatherData,
+  isLoggedIn,
+  openRegisterModal,
+  openLoginModal,
+}) {
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log(currentUser);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -29,24 +41,45 @@ function Header({ onAddClothes, isMenuOpen, onMenuOpen, weatherData }) {
           }`}
           onClick={onMenuOpen}
         />
-        <Link
-          to="/profile"
-          className={`header__user ${
-            !isMenuOpen ? "header__user_type_menu-closed" : ""
-          }`}
-        >
-          <p className="header__name">Terrence Tegegne</p>
-          <img src={avatarLogo} alt="Avatar" className="header__avatar" />
-        </Link>
-        <button
-          type="button"
-          className={`header__clothes-btn ${
-            !isMenuOpen ? "header__clothes-btn_type_menu-closed" : ""
-          }`}
-          onClick={onAddClothes}
-        >
-          + Add clothes
-        </button>
+        {isLoggedIn ? (
+          <Link
+            to="/profile"
+            className={`header__user ${
+              !isMenuOpen ? "header__user_type_menu-closed" : ""
+            }`}
+          >
+            <p className="header__name">{currentUser.name}</p>
+            <div className="header__avatar">
+              <img
+                src={currentUser.avatar}
+                alt="Avatar"
+                className="header__avatar-image"
+              />
+              <p className="header__avatar-char">
+                {currentUser.name[0].toUpperCase()}
+              </p>
+            </div>
+          </Link>
+        ) : (
+          <button className={"header__signup-btn"} onClick={openLoginModal}>
+            Log In
+          </button>
+        )}
+        {isLoggedIn ? (
+          <button
+            type="button"
+            className={`header__clothes-btn ${
+              !isMenuOpen ? "header__clothes-btn_type_menu-closed" : ""
+            }`}
+            onClick={onAddClothes}
+          >
+            + Add clothes
+          </button>
+        ) : (
+          <button className={"header__signin-btn"} onClick={openRegisterModal}>
+            Sign Up
+          </button>
+        )}
         <ToggleSwitch />
       </div>
       <Outlet />

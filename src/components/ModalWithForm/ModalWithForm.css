@@ -153,6 +153,21 @@
   opacity: 0.3;
 }
 
+.modal-form__sign-btn {
+  font-family: CabinetGrotesk, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #00000080;
+
+  margin: 0 0 0 12px;
+  padding: 0;
+  border: none;
+  background: none;
+
+  cursor: pointer;
+}
+
 @media screen and (width < 768px) {
   .modal__content_type_form {
     width: 100%;

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import "./Modal.css";
 
 function Modal({ name, type, onClose, activeModal, children }) {

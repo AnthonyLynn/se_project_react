@@ -22,7 +22,6 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
       onClose={onClose}
       activeModal={activeModal}
       title="New garment"
-      buttonText={isLoading ? "Adding item..." : "Add garment"}
       onSubmit={onSubmit}
     >
       <label htmlFor="name" className="modal-form__label">
@@ -34,7 +33,7 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
           name="name"
           placeholder="Name"
           onChange={handleChange}
-          value={values.name ? values.name : ""}
+          value={values.name || ""}
           required
         />
       </label>
@@ -47,7 +46,7 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
           name="imageUrl"
           placeholder="Image URL"
           onChange={handleChange}
-          value={values.imageUrl ? values.imageUrl : ""}
+          value={values.imageUrl || ""}
           required
         />
       </label>
@@ -102,6 +101,9 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
           Cold
         </label>
       </fieldset>
+      <button type="submit" className="modal-form__button">
+        {isLoading ? "Adding item..." : "Add garment"}
+      </button>
     </ModalWithForm>
   );
 }

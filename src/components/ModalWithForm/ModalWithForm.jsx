@@ -7,7 +7,6 @@ function ModalWithForm({
   onClose,
   activeModal,
   title,
-  buttonText,
   onSubmit,
   children,
 }) {
@@ -16,9 +15,6 @@ function ModalWithForm({
       <h2 className="modal-form__title">{title}</h2>
       <form name={name} className="modal-form__form" onSubmit={onSubmit}>
         {children}
-        <button type="submit" className="modal-form__button">
-          {buttonText}
-        </button>
       </form>
     </Modal>
   );

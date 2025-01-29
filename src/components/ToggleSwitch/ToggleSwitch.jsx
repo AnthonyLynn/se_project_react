@@ -8,7 +8,7 @@ function ToggleSwitch() {
   const { currentTemperatureUnit, setCurrentTemperatureUnit } =
     React.useContext(TemperatureUnitContext);
 
-  const handleChange = (evt) =>
+  const handleChange = () =>
     setCurrentTemperatureUnit(currentTemperatureUnit === "C" ? "F" : "C");
 
   return (
