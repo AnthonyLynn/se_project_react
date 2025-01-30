@@ -16,7 +16,6 @@ function Header({
   openLoginModal,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -50,14 +49,17 @@ function Header({
           >
             <p className="header__name">{currentUser.name}</p>
             <div className="header__avatar">
-              <img
-                src={currentUser.avatar}
-                alt="Avatar"
-                className="header__avatar-image"
-              />
-              <p className="header__avatar-char">
-                {currentUser.name[0].toUpperCase()}
-              </p>
+              {currentUser.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="Avatar"
+                  className="header__avatar-image"
+                />
+              ) : (
+                <p className="header__avatar-char">
+                  {currentUser.name[0].toUpperCase()}
+                </p>
+              )}
             </div>
           </Link>
         ) : (

@@ -24,12 +24,12 @@ function AddItemModal({ name, activeModal, onAddItem, onClose, isLoading }) {
       title="New garment"
       onSubmit={onSubmit}
     >
-      <label htmlFor="name" className="modal-form__label">
+      <label htmlFor="item-name" className="modal-form__label">
         Name
         <input
           type="text"
           className="modal-form__input"
-          id="name"
+          id="item-name"
           name="name"
           placeholder="Name"
           onChange={handleChange}

@@ -29,7 +29,8 @@ function Profile({
           onCardLike={onCardLike}
           items={items}
           weatherData={weatherData}
-          shouldFilter={false}
+          shouldFilterWeather={false}
+          shouldFilterOwner={true}
         />
       </section>
     </div>

@@ -128,8 +128,8 @@ function App() {
   }
 
   function onRegister(data) {
-    signup(data)
-      .then((data) => {
+    const registerRequest = () => {
+      return signup(data).then((data) => {
         if (data.token) {
           setToken(data.token);
           setCurrentUser(data.user);
@@ -139,13 +139,15 @@ function App() {
         } else {
           console.error("No token was found");
         }
-      })
-      .catch(console.error);
+      });
+    };
+
+    handleSubmit(registerRequest);
   }
 
   function onLogin(data) {
-    signin(data)
-      .then((data) => {
+    const loginRequest = () => {
+      return signin(data).then((data) => {
         if (data.token) {
           setToken(data.token);
           setCurrentUser(data.user);
@@ -155,8 +157,10 @@ function App() {
         } else {
           console.error("No token was found");
         }
-      })
-      .catch(console.error);
+      });
+    };
+
+    handleSubmit(loginRequest);
   }
 
   function onLogOut() {
@@ -178,12 +182,14 @@ function App() {
       return;
     }
 
-    editProfile(data, token)
-      .then(({ data }) => {
+    const editProfileRequest = () => {
+      return editProfile(data, token).then(({ data }) => {
         closeModal();
         setCurrentUser(data);
-      })
-      .catch(console.error);
+      });
+    };
+
+    handleSubmit(editProfileRequest);
   }
 
   const onCardLike = ({ _id }, isLiked) => {
@@ -199,7 +205,7 @@ function App() {
           cards.map((item) => (item._id === _id ? data : item))
         );
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   // Close modals on Esc key

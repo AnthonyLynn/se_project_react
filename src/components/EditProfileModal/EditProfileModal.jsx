@@ -32,12 +32,12 @@ function EditProfileModal({ name, activeModal, onEditProfile, onClose }) {
       title="Change profile data"
       onSubmit={onSubmit}
     >
-      <label htmlFor="name" className="modal-form__label">
+      <label htmlFor="edit-name" className="modal-form__label">
         Name
         <input
           type="text"
           className="modal-form__input"
-          id="name"
+          id="edit-name"
           name="name"
           placeholder="Name"
           onChange={handleChange}
@@ -45,12 +45,12 @@ function EditProfileModal({ name, activeModal, onEditProfile, onClose }) {
           required
         />
       </label>
-      <label htmlFor="avatar" className="modal-form__label">
+      <label htmlFor="edit-avatar" className="modal-form__label">
         Avatar
         <input
           type="url"
           className="modal-form__input"
-          id="avatar"
+          id="edit-avatar"
           name="avatar"
           placeholder="Avatar URL"
           onChange={handleChange}

@@ -1,11 +1,11 @@
-import { getResult } from "./api.js";
+import { request } from "./api.js";
 
 export function getRequest({ latitude, longitude }, APIkey) {
   return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
 }
 
-export function getWeather(request) {
-  return fetch(request).then(getResult);
+export function getWeather(requestWeather) {
+  return request(requestWeather);
 }
 
 export function filterWeatherData(data) {

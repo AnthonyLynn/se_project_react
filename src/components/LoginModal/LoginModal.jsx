@@ -30,12 +30,12 @@ function LoginModal({
       title="Log in"
       onSubmit={onSubmit}
     >
-      <label htmlFor="email" className="modal-form__label">
+      <label htmlFor="login-email" className="modal-form__label">
         Email
         <input
           type="email"
           className="modal-form__input"
-          id="email"
+          id="login-email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
@@ -43,12 +43,12 @@ function LoginModal({
           required
         />
       </label>
-      <label htmlFor="password" className="modal-form__label">
+      <label htmlFor="login-password" className="modal-form__label">
         Password
         <input
           type="password"
           className="modal-form__input"
-          id="password"
+          id="login-password"
           name="password"
           placeholder="Password"
           onChange={handleChange}

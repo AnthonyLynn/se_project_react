@@ -1,18 +1,22 @@
 import { baseUrl } from "./constants.js";
 
-export function getResult(res) {
+function getResult(res) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Error: ${res.status}`);
 }
 
+export function request(url, options) {
+  return fetch(url, options).then(getResult);
+}
+
 export function getItems() {
-  return fetch(`${baseUrl}/items`).then(getResult);
+  return request(`${baseUrl}/items`);
 }
 
 export function postItem({ name, imageUrl, weather }, token) {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     body: JSON.stringify({
       name: name,
@@ -23,35 +27,35 @@ export function postItem({ name, imageUrl, weather }, token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(getResult);
+  });
 }
 
 export function deleteItem(id, token) {
-  return fetch(`${baseUrl}/items/${id}`, {
+  return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(getResult);
+  });
 }
 
 export function likeItem(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return request(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(getResult);
+  });
 }
 
 export function dislikeItem(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return request(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(getResult);
+  });
 }

@@ -20,7 +20,8 @@ function Main({ onCardClick, items, weatherData, onCardLike }) {
         onCardClick={onCardClick}
         items={items}
         weatherData={weatherData}
-        shouldFilter={true}
+        shouldFilterWeather={true}
+        shouldFilterOwner={false}
         onCardLike={onCardLike}
       />
     </main>

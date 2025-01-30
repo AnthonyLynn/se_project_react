@@ -9,7 +9,8 @@ function ClothesSection({
   onCardLike,
   items,
   weatherData,
-  shouldFilter,
+  shouldFilterWeather,
+  shouldFilterOwner,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -17,10 +18,12 @@ function ClothesSection({
     <ul className="clothes-section">
       {items
         .filter((item) => {
-          const isWeatherType = shouldFilter
+          const isWeatherType = shouldFilterWeather
             ? item.weather === weatherData.type
             : true;
-          const isOwner = item.owner === currentUser._id;
+          const isOwner = shouldFilterOwner
+            ? item.owner === currentUser._id
+            : true;
           return isWeatherType && isOwner;
         })
         .map((item) => {

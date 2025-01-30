@@ -30,12 +30,12 @@ function RegisterModal({
       title="Sign up"
       onSubmit={onSubmit}
     >
-      <label htmlFor="email" className="modal-form__label">
+      <label htmlFor="register-email" className="modal-form__label">
         Email
         <input
           type="email"
           className="modal-form__input"
-          id="email"
+          id="register-email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
@@ -43,12 +43,12 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="password" className="modal-form__label">
+      <label htmlFor="register-password" className="modal-form__label">
         Password
         <input
           type="password"
           className="modal-form__input"
-          id="password"
+          id="register-password"
           name="password"
           placeholder="Password"
           onChange={handleChange}
@@ -56,12 +56,12 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="name" className="modal-form__label">
+      <label htmlFor="register-name" className="modal-form__label">
         Name
         <input
           type="text"
           className="modal-form__input"
-          id="name"
+          id="register-name"
           name="name"
           placeholder="Name"
           onChange={handleChange}
@@ -69,12 +69,12 @@ function RegisterModal({
           required
         />
       </label>
-      <label htmlFor="avatar" className="modal-form__label">
+      <label htmlFor="register-avatar" className="modal-form__label">
         Avatar URL
         <input
           type="url"
           className="modal-form__input"
-          id="avatar"
+          id="register-avatar"
           name="avatar"
           placeholder="Avatar URL"
           onChange={handleChange}
