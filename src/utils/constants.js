@@ -49,5 +49,8 @@ export const coords = {
 
 export const APIkey = "17022760e890d61021b86f916ff3bd86";
 
-export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://wtwrtripleten.justlearning.net"
+    : "http://localhost:3001";
 export const header = { "Content-Type": "application/json" };
